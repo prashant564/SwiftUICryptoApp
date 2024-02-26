@@ -19,6 +19,7 @@ class HomeViewModel: ObservableObject {
     
     private let coinDataService = CoinDataService()
     private let marketDataService = MarketDataService()
+    private let portfolioDataService = PortfolioDataService()
     
     private var cancellabes = Set<AnyCancellable>()
     
@@ -28,6 +29,7 @@ class HomeViewModel: ObservableObject {
     
     
     func addSubscribers() {
+        // updates all coins
         $searchText
             .combineLatest(coinDataService.$allCoins)
             .debounce(for: .seconds(0.5), scheduler: DispatchQueue.main)
@@ -37,7 +39,7 @@ class HomeViewModel: ObservableObject {
             }
             .store(in: &cancellabes)
         
-        
+        // update market data
         marketDataService.$marketData
             .map {(marketData) -> [MarketStatsModel] in
                 var stats: [MarketStatsModel] = []
@@ -61,6 +63,28 @@ class HomeViewModel: ObservableObject {
                 self?.statistics = returnedStatsArray
             }
             .store(in: &cancellabes)
+        
+        //updates portfolio coins
+        $allCoins
+            .combineLatest(portfolioDataService.$savedEntities)
+            .map { (coinModels, portfolioEntities) -> [CoinModel] in
+                coinModels
+                    .compactMap { (coin) -> CoinModel? in
+                        guard let entity = portfolioEntities.first(where: { $0.coinID == coin.id }) else {
+                            return nil
+                        }
+                    
+                        return coin.updateHoldings(amount: entity.amount)
+                    }
+            }
+            .sink { [weak self] returnedCoins in
+                self?.portfolioCoins = returnedCoins
+            }
+            .store(in: &cancellabes)
+    }
+    
+    func updatePortfolio(coin: CoinModel, amount: Double) {
+        portfolioDataService.updatePortfolio(coin: coin, amount: amount)
     }
     
     private func filterItems(text: String, startingCoins: [CoinModel]) -> [CoinModel] {

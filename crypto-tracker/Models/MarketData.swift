@@ -11,7 +11,7 @@ struct GlobalData: Codable {
     let data: MarketData?
 }
 
-// MARK: - DataClass
+
 struct MarketData: Codable {
     let activeCryptocurrencies, upcomingIcos, ongoingIcos, endedIcos: Int?
     let markets: Int?

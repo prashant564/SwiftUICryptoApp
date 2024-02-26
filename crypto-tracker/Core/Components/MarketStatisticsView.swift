@@ -23,7 +23,6 @@ struct MarketStatisticsView: View {
             HStack(spacing: 4) {
                 Image(systemName: "triangle.fill")
                     .font(.caption2)
-                    
                     .rotationEffect(Angle(degrees: stat.percentageChange ?? 0 >= 0 ? 0 : 180))
                 Text(stat.percentageChange?.asPercentString() ?? "")
                     .font(.caption)
