@@ -10,6 +10,7 @@ import SwiftUI
 struct PortfolioView: View {
     
     @EnvironmentObject private var vm: HomeViewModel
+    @Environment(\.dismiss) var dismiss
     
     @State private var selectedCoin: CoinModel? = nil
     @State private var quantityText: String = ""
@@ -28,8 +29,14 @@ struct PortfolioView: View {
             }
             .navigationTitle("Edit Portfolio")
             .toolbar(content: {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    XMarkButton()
+                ToolbarItem(placement: .topBarLeading) {
+                    Button(action: {
+                        dismiss()
+                    }, label: {
+                        Image(systemName: "xmark")
+                            .font(.headline)
+                    })
+                        .accessibilityLabel("Close Edit Portfolio")
                 }
                 if selectedCoin != nil && selectedCoin?.currentHoldings != Double(quantityText) {
                     ToolbarItem(placement: .navigationBarTrailing) {
@@ -102,7 +109,7 @@ extension PortfolioView {
     private func updateSelectedCoin(coin: CoinModel) {
         selectedCoin = coin
         if let portfolioCoins = vm.portfolioCoins.first(where: { $0.id == coin.id }) {
-            let amount = portfolioCoins.currentHoldings
+            guard let amount = portfolioCoins.currentHoldings else { return quantityText = "" }
             quantityText = "\(String(describing: amount))"
         } else {
             quantityText = ""
