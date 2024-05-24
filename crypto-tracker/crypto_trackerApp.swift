@@ -21,6 +21,7 @@ struct crypto_trackerApp: App {
             NavigationView {
                 HomeView()
                     .navigationBarHidden(true)
+                    .ignoresSafeArea()
             }
             .environmentObject(vm)
         }

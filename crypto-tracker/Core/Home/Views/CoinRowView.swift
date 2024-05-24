@@ -23,6 +23,7 @@ struct CoinRowView: View {
         }
         .font(.subheadline)
         .padding(.horizontal)
+        // to solve middle portion not clickable issue due to spacer
         .background(
             Color.theme.background.opacity(0.001)
         )

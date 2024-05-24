@@ -11,22 +11,14 @@ import SwiftUI
 struct HomeView: View {
     
     @EnvironmentObject private var vm: HomeViewModel
-    @State private var showPortfolio: Bool = true
-    @State private var showPortfolioView: Bool = false
+    @State private var showPortfolio: Bool = true // animate right
+    @State private var showPortfolioView: Bool = false // new sheet
+    
     @State private var selectedCoin: CoinModel? = nil
     @State private var showCoinDetailView: Bool = false
     
     var body: some View {
-        NavigationStack{
-            ZStack {
-                //background layer
-                Color.theme.background
-                    .ignoresSafeArea()
-                    .sheet(isPresented: $showPortfolioView, content: {
-                        PortfolioView()
-                            .environmentObject(vm)
-                    })
-                
+        NavigationStack {
                 //content layer
                 VStack {
                     homeHeader
@@ -47,10 +39,14 @@ struct HomeView: View {
                         
                     Spacer(minLength: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/)
                 }
-            }
-            .navigationDestination(isPresented: $showCoinDetailView) {
-                CoinDetailLoadingView(coin: $selectedCoin)
-            }
+                .background(Color.theme.background)
+                .sheet(isPresented: $showPortfolioView, content: {
+                    PortfolioView()
+                        .environmentObject(vm)
+                })
+                .navigationDestination(isPresented: $showCoinDetailView) {
+                    CoinDetailLoadingView(coin: $selectedCoin)
+                }
         }
     }
 }
@@ -104,7 +100,7 @@ extension HomeView {
                 CoinRowView(coin: coin, showHoldingsColumn: false)
                     .listRowInsets(.init(top: 10, leading: 0, bottom: 10, trailing: 0))
                     .onTapGesture {
-                        segue(coin: coin)
+                        onCoinRowItemClicked(coin: coin)
                     }
             }
             
@@ -121,8 +117,7 @@ extension HomeView {
                 CoinRowView(coin: coin, showHoldingsColumn: true)
                     .listRowInsets(.init(top: 10, leading: 0, bottom: 10, trailing: 0))
                     .onTapGesture {
-                        segue(coin: coin)
-                        
+                        onCoinRowItemClicked(coin: coin)
                     }
             }
             
@@ -130,7 +125,7 @@ extension HomeView {
         .listStyle(PlainListStyle())
     }
     
-    private func segue(coin: CoinModel) {
+    private func onCoinRowItemClicked(coin: CoinModel) {
         selectedCoin = coin
         showCoinDetailView.toggle()
     }
@@ -144,7 +139,7 @@ extension HomeView {
                     .rotationEffect(Angle(degrees: vm.sortOption == .rank ? 0: 180))
             }
             .onTapGesture {
-                withAnimation(.default) {
+                withAnimation(.snappy) {
                     vm.sortOption = vm.sortOption == .rank ? .rankReversed : .rank
                 }
                
@@ -158,7 +153,7 @@ extension HomeView {
                         .rotationEffect(Angle(degrees: vm.sortOption == .rank ? 0 : 180))
                 }
                 .onTapGesture {
-                    withAnimation(.default) {
+                    withAnimation(.snappy) {
                         vm.sortOption = vm.sortOption == .holdings ? .holdingsReversed : .holdings
                     }
                 }
@@ -171,7 +166,7 @@ extension HomeView {
             }
             .frame(width: UIScreen.main.bounds.width / 3.5, alignment: .trailing)
             .onTapGesture {
-                withAnimation(.default) {
+                withAnimation(.snappy) {
                     vm.sortOption = vm.sortOption == .price ? .priceReversed : .price
                 }
             }
