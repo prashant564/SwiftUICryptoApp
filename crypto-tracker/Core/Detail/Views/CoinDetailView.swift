@@ -26,7 +26,11 @@ struct CoinDetailLoadingView: View {
 
 struct CoinDetailView: View {
     
-    @StateObject var vm: CoinDetailViewModel
+    @StateObject private var vm: CoinDetailViewModel
+    private let columns: [GridItem] = [
+        GridItem(.flexible()),
+        GridItem(.flexible())
+    ]
     
     init(coin: CoinModel) {
         print("Initializing DetailView for \(coin.name)")
@@ -34,7 +38,63 @@ struct CoinDetailView: View {
     }
     
     var body: some View {
-        Text("Hello")
+        ScrollView {
+            VStack(spacing: 20) {
+                Text("Hi")
+                    .frame(height: 150)
+               
+                Text("Overview")
+                    .font(.title)
+                    .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                    .foregroundStyle(Color.theme.accent)
+                    .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, alignment: .leading)
+                
+                Divider()
+                
+                LazyVGrid(columns: columns,
+                          alignment: .leading,
+                          spacing: 20,
+                          content: {
+                    ForEach(vm.overviewStatistics) { stat in
+                        MarketStatisticsView(stat: stat)
+                    }
+                })
+                
+                Text("Additional Details")
+                    .font(.title)
+                    .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                    .foregroundStyle(Color.theme.accent)
+                    .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, alignment: .leading)
+                
+                Divider()
+                
+                LazyVGrid(columns: columns,
+                          alignment: .leading,
+                          spacing: 20,
+                          content: {
+                    ForEach(vm.additionalStatistics) { stat in
+                        MarketStatisticsView(stat: stat)
+                    }
+                })
+                
+                
+            }
+            .padding()
+            
+        }
+        .navigationTitle(vm.coin.name)
+        .toolbar(content: {
+            ToolbarItem(placement: .topBarTrailing) {
+                HStack {
+                    Text(vm.coin.symbol.uppercased())
+                        .font(.subheadline)
+                        .foregroundStyle(Color.theme.secondaryText)
+                    
+                    CoinImageView(coin: vm.coin)
+                        .frame(width: 25, height: 25)
+                }
+            }
+        })
     }
 }
 
