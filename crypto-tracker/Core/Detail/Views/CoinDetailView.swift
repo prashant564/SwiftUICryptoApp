@@ -40,8 +40,7 @@ struct CoinDetailView: View {
     var body: some View {
         ScrollView {
             VStack(spacing: 20) {
-                Text("Hi")
-                    .frame(height: 150)
+                LineChartView(coin: vm.coin)
                
                 Text("Overview")
                     .font(.title)
