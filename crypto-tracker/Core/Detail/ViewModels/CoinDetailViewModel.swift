@@ -10,7 +10,7 @@ import Combine
 
 class CoinDetailViewModel: ObservableObject {
     
-//    @Published var coinDetails: CoinDetailModel? = nil
+    @Published var coinDetails: CoinDetailModel? = nil
     @Published var overviewStatistics: [MarketStatsModel] = []
     @Published var additionalStatistics: [MarketStatsModel] = []
     
@@ -35,7 +35,12 @@ class CoinDetailViewModel: ObservableObject {
                 }
                 self.overviewStatistics = returnedArrays.overview
                 self.additionalStatistics = returnedArrays.additional
-//                self.coinDetails = returnedCoinDetails
+            }
+            .store(in: &cancellables)
+        
+        coinDetailDataService.$coinDetails
+            .sink { [weak self] (returnedCoinDetails) in
+                self?.coinDetails = returnedCoinDetails
             }
             .store(in: &cancellables)
     }

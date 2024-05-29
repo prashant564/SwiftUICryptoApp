@@ -13,12 +13,21 @@ struct HomeView: View {
     @EnvironmentObject private var vm: HomeViewModel
     @State private var showPortfolio: Bool = true // animate right
     @State private var showPortfolioView: Bool = false // new sheet
-    
+    @State private var showSettingsView: Bool = false
     @State private var selectedCoin: CoinModel? = nil
     @State private var showCoinDetailView: Bool = false
     
     var body: some View {
         NavigationStack {
+            ZStack {
+                
+                Color.theme.background
+                    .ignoresSafeArea()
+                    .sheet(isPresented: $showPortfolioView, content: {
+                        PortfolioView()
+                            .environmentObject(vm)
+                    })
+                
                 //content layer
                 VStack {
                     homeHeader
@@ -36,17 +45,17 @@ struct HomeView: View {
                         allCoinsList
                             .transition(.move(edge: .leading))
                     }
-                        
+                    
                     Spacer(minLength: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/)
                 }
-                .background(Color.theme.background)
-                .sheet(isPresented: $showPortfolioView, content: {
-                    PortfolioView()
+                .sheet(isPresented: $showSettingsView, content: {
+                    SettingsView()
                         .environmentObject(vm)
                 })
                 .navigationDestination(isPresented: $showCoinDetailView) {
                     CoinDetailLoadingView(coin: $selectedCoin)
                 }
+            }
         }
     }
 }
@@ -66,7 +75,7 @@ struct HomeView_Previews: PreviewProvider {
 extension HomeView {
     private var homeHeader: some View {
         HStack {
-            CircleButtonView(iconName: showPortfolio ? "plus" : "info")
+            CircleButtonView(iconName: showPortfolio ? "plus" : "gearshape")
                 .animation(.none, value: UUID())
                 .background(
                     CircleButtonAnimationView(animate: $showPortfolio)
@@ -74,6 +83,8 @@ extension HomeView {
                 .onTapGesture {
                     if showPortfolio {
                         showPortfolioView.toggle()
+                    } else {
+                        showSettingsView.toggle()
                     }
                 }
             Spacer()
@@ -88,6 +99,7 @@ extension HomeView {
                 .onTapGesture {
                     withAnimation(.spring) {
                         showPortfolio.toggle()
+                        HapticManager.notification(type: .success)
                     }
                 }
         }

@@ -27,6 +27,7 @@ struct CoinDetailLoadingView: View {
 struct CoinDetailView: View {
     
     @StateObject private var vm: CoinDetailViewModel
+    @State private var showFullDescription: Bool = false
     private let columns: [GridItem] = [
         GridItem(.flexible()),
         GridItem(.flexible())
@@ -47,9 +48,37 @@ struct CoinDetailView: View {
                     .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                     .foregroundStyle(Color.theme.accent)
                     .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, alignment: .leading)
-                
                 Divider()
                 
+                //description
+                ZStack {
+                    if let coinDescription = vm.coinDetails?.readableDescription, vm.coinDetails?.readableDescription != nil {
+                        VStack(alignment: .leading) {
+                            Text(coinDescription)
+                                .lineLimit(showFullDescription ? nil : 3)
+                                .font(.callout)
+                                .foregroundStyle(Color.theme.secondaryText)
+                            
+                            
+                            Button(action: {
+                                withAnimation(.easeInOut) {
+                                    showFullDescription.toggle()
+                                }
+                            }, label: {
+                                Text(showFullDescription ? "See Less" : "Read More")
+                                    .foregroundStyle(Color.teal)
+                                    .font(.footnote)
+                                    .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                                    .padding(.vertical, 4)
+                            })
+                            
+                        }
+                        .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, alignment: .leading)
+                    }
+                }
+                
+                
+                // overview statistics
                 LazyVGrid(columns: columns,
                           alignment: .leading,
                           spacing: 20,
@@ -76,7 +105,20 @@ struct CoinDetailView: View {
                     }
                 })
                 
-                
+                VStack(alignment: .leading, spacing: 20) {
+                    if let websiteString = vm.coinDetails?.links?.homepage, vm.coinDetails?.links?.homepage != nil {
+                        let url = URL(string: websiteString.first ?? "")
+                        Link("Website", destination: url!)
+                    }
+                    
+                    if let redditString = vm.coinDetails?.links?.subredditURL, vm.coinDetails?.links?.subredditURL != nil {
+                        let url = URL(string: redditString)
+                        Link("Reddit", destination: url!)
+                    }
+                }
+                .foregroundStyle(.blue)
+                .font(.headline)
+                .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, alignment: .leading)
             }
             .padding()
             
