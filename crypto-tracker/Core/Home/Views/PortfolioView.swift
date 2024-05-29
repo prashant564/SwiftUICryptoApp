@@ -101,6 +101,10 @@ extension PortfolioView {
                         )
                 }
             }
+            .background(
+                Color.theme.background
+                    .ignoresSafeArea()
+            )
             .frame(height: 120)
             .padding(.leading)
         })

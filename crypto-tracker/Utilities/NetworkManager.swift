@@ -26,9 +26,9 @@ class NetworkManager {
     
     static func getFetch(url: URL) -> AnyPublisher<Data, Error> {
         return URLSession.shared.dataTaskPublisher(for: url)
-           .subscribe(on: DispatchQueue.global(qos: .default))
            .tryMap({ try handleResponse(output: $0, url: url) })
-           .receive(on: DispatchQueue.main)
+                // retries api call again if failed for first time
+//           .retry(3)
            .eraseToAnyPublisher()
     }
     

@@ -124,6 +124,10 @@ struct CoinDetailView: View {
             
         }
         .navigationTitle(vm.coin.name)
+        .background(
+            Color.theme.background
+                .ignoresSafeArea()
+        )
         .toolbar(content: {
             ToolbarItem(placement: .topBarTrailing) {
                 HStack {

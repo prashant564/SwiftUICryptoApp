@@ -87,7 +87,7 @@ class HomeViewModel: ObservableObject {
                                             return previousValue
                                         }
                                         .reduce(0, +)
-                let percentChange = ((portfolioValue - previousValue)/previousValue)*100
+                let percentChange = ((portfolioValue - previousValue)/previousValue)
                         
                 
                 let portfolio = MarketStatsModel(

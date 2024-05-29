@@ -38,12 +38,25 @@ struct HomeView: View {
                     
                     columnTitles
                     
-                    if(showPortfolio){
-                        portfolioCoinsList
-                            .transition(.move(edge: .trailing))
-                    } else {
+                    if !showPortfolio {
                         allCoinsList
                             .transition(.move(edge: .leading))
+                    }
+                    
+                    if(showPortfolio){
+                        ZStack(alignment: .top) {
+                            if(vm.portfolioCoins.isEmpty && vm.searchText.isEmpty) {
+                                Text("You haven't added any coins to your portfolio yet! Click the + button to get started. 🤔")
+                                    .font(.callout)
+                                    .foregroundStyle(Color.theme.accent)
+                                    .fontWeight(.medium)
+                                    .multilineTextAlignment(.center)
+                                    .padding()
+                            } else {
+                                portfolioCoinsList
+                            }
+                        }
+                        .transition(.move(edge: .trailing))
                     }
                     
                     Spacer(minLength: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/)
@@ -114,6 +127,7 @@ extension HomeView {
                     .onTapGesture {
                         onCoinRowItemClicked(coin: coin)
                     }
+                    .listRowBackground(Color.theme.background)
             }
             
         }
@@ -131,6 +145,7 @@ extension HomeView {
                     .onTapGesture {
                         onCoinRowItemClicked(coin: coin)
                     }
+                    .listRowBackground(Color.theme.background)
             }
             
         }

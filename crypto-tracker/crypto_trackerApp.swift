@@ -15,16 +15,20 @@ struct crypto_trackerApp: App {
     init() {
         UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor : UIColor(Color.theme.accent)]
         UINavigationBar.appearance().titleTextAttributes = [.foregroundColor : UIColor(Color.theme.accent)]
+        
+        //for list when you scroll to the top for the refresh area, your custom background color must show there
+        UITableView.appearance().backgroundColor = UIColor.clear
+        
+        UINavigationBar.appearance().tintColor = UIColor(Color.theme.accent)
     }
     
     var body: some Scene {
         WindowGroup {
             
             ZStack {
-                NavigationView {
+                NavigationStack {
                     HomeView()
                         .navigationBarHidden(true)
-                        .ignoresSafeArea()
                 }
                 .environmentObject(vm)
                 

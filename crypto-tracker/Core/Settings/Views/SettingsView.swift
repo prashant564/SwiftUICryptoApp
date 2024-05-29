@@ -19,77 +19,87 @@ struct SettingsView: View {
     
     var body: some View {
         NavigationView {
-            List {
-                Section("Swiftful Thinking") {
-                    VStack(alignment: .leading) {
-                        Image("logo")
-                            .resizable()
-                            .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: 100)
-                            .clipShape(RoundedRectangle(cornerRadius: 20))
-                        Text ("This app was made by following a @SwiftfulThinking course on YouTube. It uses MVVM Architecture, Combine, and CoreData!")
-                            .font(.callout)
-                            .fontWeight(.medium)
-                            .foregroundColor (Color.theme.accent)
-                    }
-                    .padding(.vertical)
-                    Link("Subscribe on Youtube", destination: youtubeUrl)
-                    Link("Support for his coffee addiction", destination: coffeeUrl)
-                }
+            ZStack {
                 
-                Section("Coin Gecko") {
-                    VStack(alignment: .leading) {
-                        Image("coingecko")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(height: 100)
-                            .clipShape(RoundedRectangle(cornerRadius: 20))
-                        Text("The cryptocurrency data that is used in this app comes from a free API from CoinGecko! Prices may be slightly delayed.")
-                            .font(.callout)
-                            .fontWeight(.medium)
-                            .foregroundColor (Color.theme.accent)
-                    }
-                    .padding(.vertical)
-                    Link("Visit Coin Gecko", destination: coingeckoURL)
-                }
+                Color.theme.background
+                    .ignoresSafeArea()
                 
-                Section("Developer") {
-                    VStack(alignment: .leading) {
-                        Image(systemName: "person")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 50, height: 50)
-                            .clipShape(RoundedRectangle(cornerRadius: 20))
-                        Text("This app was developed by Prashant Dixit. It uses SwiftUI and is written 100% in Swift. The project benefits from multi-threading, publishers/subscribers, and data persistance.")
-                            .font(.callout)
-                            .fontWeight(.medium)
-                            .foregroundColor (Color.theme.accent)
+                List {
+                    Section("Swiftful Thinking") {
+                        VStack(alignment: .leading) {
+                            Image("logo")
+                                .resizable()
+                                .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: 100)
+                                .clipShape(RoundedRectangle(cornerRadius: 20))
+                            Text ("This app was made by following a @SwiftfulThinking course on YouTube. It uses MVVM Architecture, Combine, and CoreData!")
+                                .font(.callout)
+                                .fontWeight(.medium)
+                                .foregroundColor (Color.theme.accent)
+                        }
+                        .padding(.vertical)
+                        Link("Subscribe on Youtube", destination: youtubeUrl)
+                        Link("Support for his coffee addiction", destination: coffeeUrl)
                     }
-                    .padding(.vertical)
-                    Link("Github Url", destination: personalURL)
+                    .listRowBackground(Color.theme.background.opacity(0.5))
+                    
+                    Section("Coin Gecko") {
+                        VStack(alignment: .leading) {
+                            Image("coingecko")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(height: 100)
+                                .clipShape(RoundedRectangle(cornerRadius: 20))
+                            Text("The cryptocurrency data that is used in this app comes from a free API from CoinGecko! Prices may be slightly delayed.")
+                                .font(.callout)
+                                .fontWeight(.medium)
+                                .foregroundColor (Color.theme.accent)
+                        }
+                        .padding(.vertical)
+                        Link("Visit Coin Gecko", destination: coingeckoURL)
+                    }
+                    .listRowBackground(Color.theme.background.opacity(0.5))
+                    
+                    Section("Developer") {
+                        VStack(alignment: .leading) {
+                            Image(systemName: "person")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 50, height: 50)
+                                .clipShape(RoundedRectangle(cornerRadius: 20))
+                            Text("This app was developed by Prashant Dixit. It uses SwiftUI and is written 100% in Swift. The project benefits from multi-threading, publishers/subscribers, and data persistance.")
+                                .font(.callout)
+                                .fontWeight(.medium)
+                                .foregroundColor (Color.theme.accent)
+                        }
+                        .padding(.vertical)
+                        Link("Github Url", destination: personalURL)
+                    }
+                    .listRowBackground(Color.theme.background.opacity(0.5))
+                    
+                    Section("Application") {
+                        Link("Terms of Service", destination: defaultUrl)
+                        Link("Privacy Policy", destination: defaultUrl)
+                        Link ("Company Website", destination: defaultUrl)
+                        Link("Learn More", destination: defaultUrl)
+                    }
+                    .listRowBackground(Color.theme.background.opacity(0.5))
                 }
-                
-                Section("Application") {
-                    Link("Terms of Service", destination: defaultUrl)
-                    Link("Privacy Policy", destination: defaultUrl)
-                    Link ("Company Website", destination: defaultUrl)
-                    Link("Learn More", destination: defaultUrl)
-                }
-            }
-            .font(.headline)
-            .accentColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
-            .listStyle(GroupedListStyle())
-            .navigationTitle("Settings")
-            .toolbar(content: {
-                ToolbarItem(placement: .topBarLeading) {
-                    Button(action: {
-                        dismiss()
-                    }, label: {
-                        Image(systemName: "xmark")
-                            .font(.headline)
-                    })
-                    .accessibilityLabel("Close Settings")
-                }
+                .font(.headline)
+                .accentColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
+                .listStyle(GroupedListStyle())
+                .navigationTitle("Settings")
+                .toolbar(content: {
+                    ToolbarItem(placement: .topBarLeading) {
+                        Button(action: {
+                            dismiss()
+                        }, label: {
+                            Image(systemName: "xmark")
+                                .font(.headline)
+                        })
+                        .accessibilityLabel("Close Settings")
+                    }
             })
+            }
         }
     }
 }
