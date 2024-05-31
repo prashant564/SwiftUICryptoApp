@@ -14,12 +14,13 @@ struct HomeStatsView: View {
     
     var body: some View {
         HStack {
-            ForEach(vm.statistics) { stat in
+            ForEach(vm.statistics.isEmpty ? placeholderStats : vm.statistics) { stat in
                 MarketStatisticsView(stat: stat)
                     .frame(width: UIScreen.main.bounds.width / 3)
             }
         }
         .frame(width: UIScreen.main.bounds.width, alignment: showPortfolio ? .trailing : .leading)
+        .redacted(reason: vm.statistics.isEmpty ? .placeholder : [])
     }
 }
 
