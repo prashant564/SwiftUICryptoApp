@@ -14,6 +14,7 @@ struct PortfolioView: View {
     
     @State private var selectedCoin: CoinModel? = nil
     @State private var quantityText: String = ""
+    @FocusState private var isAmountTextFieldFocused: Bool
     
     var body: some View {
         NavigationView {
@@ -27,6 +28,10 @@ struct PortfolioView: View {
                     }
                 }
             }
+            .background(
+                Color.theme.background
+                    .ignoresSafeArea()
+            )
             .navigationTitle("Edit Portfolio")
             .toolbar(content: {
                 ToolbarItem(placement: .topBarLeading) {
@@ -101,10 +106,6 @@ extension PortfolioView {
                         )
                 }
             }
-            .background(
-                Color.theme.background
-                    .ignoresSafeArea()
-            )
             .frame(height: 120)
             .padding(.leading)
         })
@@ -134,6 +135,10 @@ extension PortfolioView {
                 TextField("Ex: 1.4",text: $quantityText)
                     .multilineTextAlignment(.trailing)
                     .keyboardType(.decimalPad)
+                    .focused($isAmountTextFieldFocused)
+                    .onAppear(perform: {
+                        isAmountTextFieldFocused = true
+                    })
             }
             Divider()
             HStack {
