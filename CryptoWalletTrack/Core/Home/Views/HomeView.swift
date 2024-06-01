@@ -44,8 +44,10 @@ struct HomeView: View {
                     }
                     
                     if(showPortfolio){
-                        ZStack(alignment: .top) {
+                        VStack(alignment: .center) {
                             if(vm.portfolioCoins.isEmpty && vm.searchText.isEmpty) {
+                                Image("empty-list")
+                                    .padding(.vertical)
                                 Text("You haven't added any coins to your portfolio yet! Click the + button to get started. 🤔")
                                     .font(.callout)
                                     .foregroundStyle(Color.theme.accent)

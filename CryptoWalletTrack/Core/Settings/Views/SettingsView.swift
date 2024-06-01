@@ -16,6 +16,8 @@ struct SettingsView: View {
     let coffeeUrl = URL(string: "https://www.buymeacoffee.com/nicksarno")!
     let coingeckoURL = URL(string: "https://www.coingecko.com")!
     let personalURL = URL(string: "https://github.com/prashant564")!
+    let privacyPolicyUrl = URL(string: "https://doc-hosting.flycricket.io/cryptowallettrack-privacy-policy/c2cc72e4-2c3b-41bb-a8e4-4521ff4a7f08/privacy")!
+    let termsAndConditionUrl = URL(string: "https://doc-hosting.flycricket.io/cryptowallettrack/712b8d5d-f39f-45ba-8702-bccea196b600/terms")!
     
     var body: some View {
         NavigationView {
@@ -25,40 +27,6 @@ struct SettingsView: View {
                     .ignoresSafeArea()
                 
                 List {
-                    Section("Swiftful Thinking") {
-                        VStack(alignment: .leading) {
-                            Image("logo")
-                                .resizable()
-                                .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: 100)
-                                .clipShape(RoundedRectangle(cornerRadius: 20))
-                            Text ("This app was made by following a @SwiftfulThinking course on YouTube. It uses MVVM Architecture, Combine, and CoreData!")
-                                .font(.callout)
-                                .fontWeight(.medium)
-                                .foregroundColor (Color.theme.accent)
-                        }
-                        .padding(.vertical)
-                        Link("Subscribe on Youtube", destination: youtubeUrl)
-                        Link("Support for his coffee addiction", destination: coffeeUrl)
-                    }
-                    .listRowBackground(Color.theme.background.opacity(0.5))
-                    
-                    Section("Coin Gecko") {
-                        VStack(alignment: .leading) {
-                            Image("coingecko")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(height: 100)
-                                .clipShape(RoundedRectangle(cornerRadius: 20))
-                            Text("The cryptocurrency data that is used in this app comes from a free API from CoinGecko! Prices may be slightly delayed.")
-                                .font(.callout)
-                                .fontWeight(.medium)
-                                .foregroundColor (Color.theme.accent)
-                        }
-                        .padding(.vertical)
-                        Link("Visit Coin Gecko", destination: coingeckoURL)
-                    }
-                    .listRowBackground(Color.theme.background.opacity(0.5))
-                    
                     Section("Developer") {
                         VStack(alignment: .leading) {
                             Image(systemName: "person")
@@ -66,7 +34,7 @@ struct SettingsView: View {
                                 .scaledToFit()
                                 .frame(width: 50, height: 50)
                                 .clipShape(RoundedRectangle(cornerRadius: 20))
-                            Text("This app was developed by Prashant Dixit. It uses SwiftUI and is written 100% in Swift. The project benefits from multi-threading, publishers/subscribers, and data persistance.")
+                            Text("This app was developed by Prashant Dixit. It uses SwiftUI and is written 100% in Swift. This app gives users latest crypto market updates and let's them keep a track of their investments.")
                                 .font(.callout)
                                 .fontWeight(.medium)
                                 .foregroundColor (Color.theme.accent)
@@ -77,10 +45,8 @@ struct SettingsView: View {
                     .listRowBackground(Color.theme.background.opacity(0.5))
                     
                     Section("Application") {
-                        Link("Terms of Service", destination: defaultUrl)
-                        Link("Privacy Policy", destination: defaultUrl)
-                        Link ("Company Website", destination: defaultUrl)
-                        Link("Learn More", destination: defaultUrl)
+                        Link("Terms of Service", destination: termsAndConditionUrl)
+                        Link("Privacy Policy", destination: privacyPolicyUrl)
                     }
                     .listRowBackground(Color.theme.background.opacity(0.5))
                 }
