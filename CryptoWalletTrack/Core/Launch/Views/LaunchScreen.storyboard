@@ -22,21 +22,21 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0gu-wS-Mte">
-                                <rect key="frame" x="0.0" y="59" width="393" height="773"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ubC-CX-wr4">
+                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-transparent" translatesAutoresizingMaskIntoConstraints="NO" id="2ki-is-70E">
-                                        <rect key="frame" x="146.66666666666666" y="336.66666666666669" width="100" height="100"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launch-logo" translatesAutoresizingMaskIntoConstraints="NO" id="uHB-hC-PfB">
+                                        <rect key="frame" x="146.66666666666666" y="329.66666666666669" width="100" height="100"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="100" id="55s-Ee-65c"/>
-                                            <constraint firstAttribute="height" constant="100" id="gSj-iG-Uj0"/>
+                                            <constraint firstAttribute="height" constant="100" id="11O-aC-73K"/>
+                                            <constraint firstAttribute="width" constant="100" id="rQn-1c-54e"/>
                                         </constraints>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="2ki-is-70E" firstAttribute="centerX" secondItem="0gu-wS-Mte" secondAttribute="centerX" id="G3q-A1-a1E"/>
-                                    <constraint firstItem="2ki-is-70E" firstAttribute="centerY" secondItem="0gu-wS-Mte" secondAttribute="centerY" id="NXO-h5-1ok"/>
+                                    <constraint firstItem="uHB-hC-PfB" firstAttribute="centerX" secondItem="ubC-CX-wr4" secondAttribute="centerX" id="Rah-jT-t7z"/>
+                                    <constraint firstItem="uHB-hC-PfB" firstAttribute="centerY" secondItem="ubC-CX-wr4" secondAttribute="centerY" id="wts-hx-etc"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -44,16 +44,12 @@
                         <color key="backgroundColor" name="LaunchBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Bcu-3y-fUS" firstAttribute="centerX" secondItem="obG-Y5-kRd" secondAttribute="centerX" id="5cz-MP-9tL"/>
-                            <constraint firstItem="obG-Y5-kRd" firstAttribute="top" secondItem="0gu-wS-Mte" secondAttribute="bottom" id="6bs-K3-hO1"/>
-                            <constraint firstItem="0gu-wS-Mte" firstAttribute="leading" secondItem="Bcu-3y-fUS" secondAttribute="leading" id="MLo-2e-shN"/>
-                            <constraint firstItem="0gu-wS-Mte" firstAttribute="leading" secondItem="Bcu-3y-fUS" secondAttribute="leading" id="Oz6-Q8-rWQ"/>
-                            <constraint firstItem="obG-Y5-kRd" firstAttribute="top" secondItem="0gu-wS-Mte" secondAttribute="bottom" id="Pgg-at-hAU"/>
-                            <constraint firstItem="0gu-wS-Mte" firstAttribute="top" secondItem="Bcu-3y-fUS" secondAttribute="top" id="RGe-pf-gtW"/>
-                            <constraint firstItem="obG-Y5-kRd" firstAttribute="leading" secondItem="Bcu-3y-fUS" secondAttribute="leading" symbolic="YES" id="SfN-ll-jLj"/>
+                            <constraint firstItem="ubC-CX-wr4" firstAttribute="leading" secondItem="Bcu-3y-fUS" secondAttribute="leading" id="7Vh-TH-DWt"/>
+                            <constraint firstItem="Bcu-3y-fUS" firstAttribute="bottom" secondItem="ubC-CX-wr4" secondAttribute="bottom" id="8zT-bW-OIt"/>
+                            <constraint firstItem="ubC-CX-wr4" firstAttribute="top" secondItem="Bcu-3y-fUS" secondAttribute="top" id="PEl-HY-z0d"/>
+                            <constraint firstItem="obG-Y5-kRd" firstAttribute="leading" secondItem="Bcu-3y-fUS" secondAttribute="leading" constant="20" symbolic="YES" id="SfN-ll-jLj"/>
                             <constraint firstAttribute="bottom" secondItem="obG-Y5-kRd" secondAttribute="bottom" constant="20" id="Y44-ml-fuU"/>
-                            <constraint firstItem="Bcu-3y-fUS" firstAttribute="trailing" secondItem="0gu-wS-Mte" secondAttribute="trailing" id="nH2-rJ-DtC"/>
-                            <constraint firstItem="0gu-wS-Mte" firstAttribute="trailing" secondItem="Bcu-3y-fUS" secondAttribute="trailing" id="qi0-6B-AdH"/>
-                            <constraint firstItem="obG-Y5-kRd" firstAttribute="top" secondItem="0gu-wS-Mte" secondAttribute="bottom" id="wKh-sY-xxs"/>
+                            <constraint firstItem="Bcu-3y-fUS" firstAttribute="trailing" secondItem="ubC-CX-wr4" secondAttribute="trailing" id="cVD-SN-XpY"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -63,7 +59,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="logo-transparent" width="100" height="100"/>
+        <image name="launch-logo" width="33.333332061767578" height="33.333332061767578"/>
         <namedColor name="LaunchBackgroundColor">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

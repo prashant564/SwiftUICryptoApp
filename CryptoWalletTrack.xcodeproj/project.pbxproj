@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E40132822C067C83000EA907 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E40132812C067C83000EA907 /* LaunchScreen.storyboard */; };
 		E40132842C0724BB000EA907 /* LaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E40132832C0724BB000EA907 /* LaunchView.swift */; };
 		E426B45D2C0A6C02000694DB /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E426B45C2C0A6C02000694DB /* Constants.swift */; };
 		E46540162B7D624300877CAA /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46540152B7D624300877CAA /* SearchBarView.swift */; };
@@ -31,6 +30,7 @@
 		E49963D72C0351A500171BFB /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49963D62C0351A500171BFB /* Date.swift */; };
 		E49963D92C0477AD00171BFB /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49963D82C0477AD00171BFB /* String.swift */; };
 		E49963DD2C0488FE00171BFB /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49963DC2C0488FE00171BFB /* SettingsView.swift */; };
+		E4F3921B2C10F58E00D654FC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E4F3921A2C10F58E00D654FC /* LaunchScreen.storyboard */; };
 		E4F72A392B73AB0500D7F910 /* CryptoWalletTrackApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F72A382B73AB0500D7F910 /* CryptoWalletTrackApp.swift */; };
 		E4F72A3D2B73AB0600D7F910 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E4F72A3C2B73AB0600D7F910 /* Assets.xcassets */; };
 		E4F72A402B73AB0600D7F910 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E4F72A3F2B73AB0600D7F910 /* Preview Assets.xcassets */; };
@@ -52,7 +52,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		E40132812C067C83000EA907 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E40132832C0724BB000EA907 /* LaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchView.swift; sourceTree = "<group>"; };
 		E426B45C2C0A6C02000694DB /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		E46540152B7D624300877CAA /* SearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
@@ -76,6 +75,7 @@
 		E49963D62C0351A500171BFB /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		E49963D82C0477AD00171BFB /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		E49963DC2C0488FE00171BFB /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		E4F3921A2C10F58E00D654FC /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E4F72A352B73AB0500D7F910 /* CryptoWalletTrack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CryptoWalletTrack.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4F72A382B73AB0500D7F910 /* CryptoWalletTrackApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoWalletTrackApp.swift; sourceTree = "<group>"; };
 		E4F72A3C2B73AB0600D7F910 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -119,8 +119,8 @@
 		E40132802C067C68000EA907 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				E40132812C067C83000EA907 /* LaunchScreen.storyboard */,
 				E40132832C0724BB000EA907 /* LaunchView.swift */,
+				E4F3921A2C10F58E00D654FC /* LaunchScreen.storyboard */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -391,7 +391,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E40132822C067C83000EA907 /* LaunchScreen.storyboard in Resources */,
+				E4F3921B2C10F58E00D654FC /* LaunchScreen.storyboard in Resources */,
 				E4F72A402B73AB0600D7F910 /* Preview Assets.xcassets in Resources */,
 				E4F72A3D2B73AB0600D7F910 /* Assets.xcassets in Resources */,
 			);
@@ -573,7 +573,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -607,7 +607,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
